@@ -11,10 +11,11 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class UserSessionsRepository {
 
-    private ConcurrentHashMap<String, WebSocketSession> sessionIdWebSocketMap = new ConcurrentHashMap<>();
+    Logger log = LoggerFactory.getLogger(UserSessionsRepository.class);
 
-    private ConcurrentHashMap<String, LinkedList<String>> clientIdToSessionId = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, WebSocketSession> sessionIdWebSocketMap = new ConcurrentHashMap<>();
 
+    private final ConcurrentHashMap<String, LinkedList<String>> clientIdToSessionId = new ConcurrentHashMap<>();
 
     public UserSessionsRepository() {
 
@@ -34,8 +35,6 @@ public class UserSessionsRepository {
         sessions.add(sessionId);
         clientIdToSessionId.put(clientId, sessions);
     }
-
-    Logger log = LoggerFactory.getLogger(UserSessionsRepository.class);
 
     public LinkedList<WebSocketSession> findSessionsByClientId(String clientId) {
         LinkedList<WebSocketSession> webSocketSessions = new LinkedList<>();

@@ -8,7 +8,6 @@ public class WebsocketMessageHandler implements WebSocketHandler {
 
     Logger log = LoggerFactory.getLogger(WebsocketMessageHandler.class);
 
-
     private final UserSessionsRepository userSessionsRepository;
 
     public WebsocketMessageHandler(UserSessionsRepository userSessionsRepository) {
@@ -34,13 +33,13 @@ public class WebsocketMessageHandler implements WebSocketHandler {
     }
 
     @Override
-    public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
+    public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) {
         log.info("Handle message in sessionId = " + session.getId() + " payload = " + message.getPayload());
         log.info("Join sessionId = " + session.getId() + " and clientId = " + message.getPayload() + " from message");
         userSessionsRepository.joinSessionAndClientId(session.getId(), message.getPayload().toString());
     }
 
     @Override
-    public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
+    public void handleTransportError(WebSocketSession session, Throwable exception) {
     }
 }
