@@ -38,7 +38,7 @@ docker-compose.exe up -d
 
 ```json
 {
-    "uuid": "7d5c0aae-24a6-e706-8fdb-5d90a9308289",
+    "clientId": "7d5c0aae-24a6-e706-8fdb-5d90a9308289",
     "payload" : "Its new message for users"
 }
 ```
